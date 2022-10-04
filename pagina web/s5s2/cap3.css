@@ -5,12 +5,19 @@ h2,h3{
     
 }
 
+nav.contenedor{ 
+    text-decoration: underline;
+}
+
 /* selectores descendientes */
+.contenedor p{
+    font-size: 10px;
+}
+
 .contenedor>p {
     font-family: 'time new roman',times, serif;
     font-size: 50px;
+    color: red;
 }
 
-nav.contenedor{
-    text-decoration: underline;
-}
+
