@@ -1,0 +1,31 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+
+.header{
+    height: 400px;
+    background: red;
+    color: white;
+}
+
+.title{
+    color: white;
+}
+
+
+h2{
+    color: black;
+}
+
+
+
+.title{
+    font-size: 100px !important;
+}
+
+header>h2.title#title{
+    font-size: 30px;
+}

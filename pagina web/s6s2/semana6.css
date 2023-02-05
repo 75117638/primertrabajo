@@ -1,0 +1,39 @@
+body{
+    margin:0;
+}
+
+.box{
+    /*border: 1px solid black;
+    padding: 10px;
+    margin: 10px;*/
+
+    width: 200px;
+    height: 100px; 
+    
+}  
+
+.box1{
+    box-sizing: border-box;
+    background-color: red;
+    border: 1px solid black;
+    margin-left: 20px;
+    border: 10px dotted blue; 
+    /*margin-top: 50px;
+    margin-bottom: 40px;
+    margin-left: 30px;*/
+
+    /* margin:50px; */
+    /* margin:auto; */
+
+}
+
+.box2{
+    box-sizing: border-box;
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: black;
+    padding: 20px 20px 300px 20px;
+    overflow: hidden;
+    border: 20px solid deeppink;
+}

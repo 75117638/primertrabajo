@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases 07112022</title>
+</head>
+<body>
+    
+    <script>
+        var repetir="si";
+              while(repetir=="si"){
+                var ope = prompt("Ingrese suma/resta/multiplicacion/division");
+                var numA = parseInt(prompt("Ingresa el primer numero"));
+                var numB = parseInt(prompt("Ingrese el segundo numero"));
+              
+                if((isNaN(numA)==false) && (isNaN(numB)==false))
+                   {
+                      if (ope =="suma")
+                        {
+                          suma(numA,numB);
+                          //alert(numA + numB);
+                        }
+                      else if (ope == "resta")
+                        {
+                          resta(numA,numB);
+                          //alert(numA-numB);
+                        }
+                      else if  ((ope =="multiplicacion") || (ope =="multiplicación"))
+                        {
+                          multi(numA,numB);
+                          //alert(numA*numB);
+                else //el resto 
+                        {
+                          alert("operacion  no  contemplada");
+                        }
+                   }
+                else{
+                  alert("Ingrese los numeros");
+                }
+                  
+                repetir = prompt("Desea repetir? (si/no)");
+              }
+        </script>
+        
+      
+
+
+</body>
+</html>

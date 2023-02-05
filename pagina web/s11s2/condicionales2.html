@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>condicionales 2x</title>
+
+  <style>
+    table {
+      margin: auto;
+    }
+  </style>
+
+
+</head>
+
+<body id="cuerpo">
+  <form name="form1" method="post" action="" id="miformulario">
+    <table width="25%" border="1" id="mitabla">
+      <tr>
+        <td>Nombre:</td>
+        <td><label for="textfield"></label>
+          <input type="text" name="textfield" id="textfield">
+        </td>
+      </tr>
+      <tr>
+        <td>Apellidos:</td>
+        <td><input type="text" name="textfield2" id="textfield2"></td>
+      </tr>
+      <tr>
+        <td>Edad:</td>
+        <td><input type="text" name="textfield3" id="textfield3"></td>
+      </tr>
+      <tr>
+        <td>Carnet:</td>
+        <td><input type="text" name="textfield4" id="textfield4"></td>
+      </tr>
+      <tr>
+        <td><input type="submit" name="button" id="button" value="Enviar"></td>
+        <td><input type="reset" name="button2" id="button2" value="Restablecer"></td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    var color = prompt("ingrese el color (rojo/verde/amarrillo)");
+    var cuerpo = document.getElementById("cuerpo");
+
+    /*if (color.toLowerCase() == "rojo")
+      {
+        cuerpo.style.background="red";
+      }
+    
+    else if (color.toLowerCase() == "verde")
+      {
+        cuerpo.style.background="green";
+      }
+
+    else if (color.toLowerCase() == "amarrillo")
+      {
+        cuerpo.style.background="yellow";
+      }
+    
+    else {
+      alert("el color ingresado no esta comteplado (rojo/verde/amarrillo) ");
+    }*/
+
+    if ((color != "rojo") && (color !="verde") && (color !="amarrillo"))
+    {
+      alert("el color ingresado no esta comteplado");
+    }
+    else if (color =="rojo")
+    {
+      cuerpo.style.background="red";
+    }
+
+    else if (color =="amarrillo")
+    {
+      cuerpo.style.background="yellow";
+    }
+
+    else
+    {
+      cuerpo.style.background="green";
+    }
+
+  </script>
+</body>
+
+</html>

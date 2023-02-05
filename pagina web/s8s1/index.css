@@ -1,0 +1,79 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: 0px;
+}
+
+.box{
+    background: orange;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 40px;
+
+    
+    /* border: ancho style color */
+    border: 10px dashed black;
+
+
+    border-width: 10px;
+    border-style: solid dashed dotted groove;
+    border-color: brown;
+
+
+    border-top-color: black;
+    border-top-style: dashed;
+    border-top-width: 10px;
+    border-right-color: red;
+    border-right-style: dashed;
+    border-right-width: 10px;
+    border-bottom-color: white;
+    border-bottom-style: dashed;
+    border-bottom-width: 10px;
+    border-left-color: blue;
+    border-left-style: dashed;
+    border-left-width: 10px;
+}
+
+img{
+    display: block;
+    width: 500px;
+    height: 500px;
+    margin: 80px auto;
+    object-fit: cover;
+    border: 20px groove brown;
+
+    /* border-radius: 1000px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 10px; */
+
+    border-radius: 50%;
+}
+
+.card{
+    border: 1px solid black;
+    width: 800px;
+    margin: 20px auto;
+}
+
+.cta{
+    display: block;
+    background: red;
+    border-radius: 5px;
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 2px auto;
+}
+
+.goku{
+    text-align: center;
+    background: rgb(91, 91, 128);
+    color: black;
+    margin: 0% auto;
+    width: 100px;
+    padding: 5px;
+    font-size: 25px;
+}

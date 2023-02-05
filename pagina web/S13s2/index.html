@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticacion</title>
+</head>
+
+<body>
+    <h1 id="welcome">Bienvenido al portal</h1>
+
+    <div id="seccionlogin">
+        <h3>Login</h3>
+        <input id="usrL" type="email" placeholder="Ingrese su correo">
+        <br>
+        <br>
+        <input id="pwdL" type="password" placeholder="Ingrese su password">
+        <br>
+        <br>
+        <button id="btnLogin">Login</button>
+        <br><br><br>
+    </div>
+
+    <div>
+        <button id="btnLogout" hidden>Logout</button>
+    </div>
+
+
+    <div>
+        <h3>Registro</h3>
+        <input id="usrR" type="email" placeholder="Ingrese su correo">
+        <br>
+        <br>
+        <input id="pwdR" type="password" placeholder="Ingrese su password">
+        <br>
+        <br>
+        <button id="btnRegistrar">Registrar</button>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        import { getAuth, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAeCKLufZLujZjMNbpA4wYzzSlEKrxy_us",
+            authDomain: "s13s2login.firebaseapp.com",
+            projectId: "s13s2login",
+            storageBucket: "s13s2login.appspot.com",
+            messagingSenderId: "416830852896",
+            appId: "1:416830852896:web:12d6677e9d867ea37cd145"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        document.getElementById("btnLogin").addEventListener("click", () => {
+            var usrVar = document.getElementById("usrL").value;
+            var pwdVar = document.getElementById("pwdL").value;
+
+            signInWithEmailAndPassword(auth, usrVar, pwdVar)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    // ...                    
+                    console.log(user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorMessage);
+                });
+        });
+        document.getElementById("btnRegistrar").addEventListener("click", () => {
+            var usrVar = document.getElementById("usrR").value;
+            var pwdVar = document.getElementById("pwdR").value;
+
+            createUserWithEmailAndPassword(auth, usrVar, pwdVar)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    // ...
+                    console.log("Creado");
+                    console.log(user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // ..
+                    console.log(errorMessage);
+                });
+        })
+
+        document.getElementById("btnLogout").addEventListener("click", () => {
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                alert("Cerró sesión correctamente");
+            }).catch((error) => {
+                // An error happened.
+            });
+        })
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const email = user.email;
+                document.getElementById("welcome").innerHTML = document.getElementById("welcome").innerHTML + ", " + email;
+                document.getElementById("seccionlogin").style.display = 'none';
+                document.getElementById("btnLogout").style.display = 'block';
+                // ...
+            } else {
+                // User is signed out
+                // ...
+                document.getElementById("welcome").innerHTML = "Bienvenido al portal";
+                document.getElementById("seccionlogin").style.display = 'block';
+                document.getElementById("btnLogout").style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

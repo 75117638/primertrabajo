@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css"
+        integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="form">
+                            <div class="form-group">
+                                <input type="text" id="title" placeholder="Titulo" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea type="text" id="description" placeholder="Descripcion" class="form-control"
+                                    rows="3"></textarea>
+                            </div>
+                            <button class="btn btn-primary" id="btnGuardar">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6" id="container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries        
+        import { getFirestore, collection, addDoc, getDocs, query, where, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqJDIgsRUNTly6fnmbeyAOGXTK32dDXvg",
+            authDomain: "base-de-datos-3cad1.firebaseapp.com",
+            projectId: "base-de-datos-3cad1",
+            storageBucket: "base-de-datos-3cad1.appspot.com",
+            messagingSenderId: "1059540421183",
+            appId: "1:1059540421183:web:3f6b4008a5ca9eac08c68a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        var formulario = document.getElementById("form");
+
+        formulario.addEventListener("submit", async (e) => {
+            //no refrescar pagina
+            e.preventDefault();
+
+            var title = document.getElementById("title").value;
+            var description = document.getElementById("description").value;
+
+            try {
+                const docRef = await addDoc(collection(db, "posts"), {
+                    titulo: title,
+                    descripcion: description
+                });
+                console.log("Document written with ID: ", docRef.id);
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        })
+
+        window.addEventListener("DOMContentLoaded", async () => {
+            var listado = document.getElementById("container");
+
+            const querySnapshot = await getDocs(collection(db, "posts"));
+            querySnapshot.forEach((docu) => {
+                listado.innerHTML = listado.innerHTML +
+                    "<div class='card card-body mt-2 boder-primary'>" +
+                    "<h3>" + docu.data().titulo + "</h3>" +
+                    "<p>" + docu.data().descripcion + "</p>" +
+                    "</div>";
+            });
+
+            const q = query(collection(db, "posts"));
+
+            const unsubscribe = onSnapshot(q, (coleccion) => {
+                listado.innerHTML = "";
+                coleccion.forEach((doc) => {
+                    listado.innerHTML = listado.innerHTML +
+                        "<div class='card card-body mt-2 boder-primary'>" +
+                        "<h3>" + doc.data().titulo + "</h3>" +
+                        "<p>" + doc.data().descripcion + "</p>" +
+                        "<div>" +
+                        "<button class='btn btn-primary btn-delete' data-id='" + doc.id + "'>Eliminar</button>" +
+                        "</div>" +
+                        "</div>";
+
+                    const botonesEditar = document.querySelector(".btn-edit")
+                    botonesEditar.forEach((boton) => {
+                        boton.addEventListener("click", (eve) => {
+                            const idselec = doc(db, "posts", eve.target.dataset.id);
+
+                        })
+                    })
+
+                    const botonesDelete = document.querySelectorAll(".btn-delete");
+                    botonesDelete.forEach((boton) => {
+                        boton.addEventListener("click", async (evento) => {
+                            await deleteDoc(doc(db, "posts", evento.target.dataset.id));
+                        })
+                    })
+                });
+            });
+        })
+    </script>
+</body>
+
+</html>
